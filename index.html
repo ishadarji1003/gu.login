@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Login Clone</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+}
+
+.container {
+    width: 320px;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.header {
+    background: #f47c4a;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+
+.header h2 {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.form {
+    padding: 20px;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.captcha-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.captcha {
+    background: #eee;
+    padding: 8px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #f47c4a;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e56a3a;
+}
+
+#gallery {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+/* PDF styling */
+#gallery iframe {
+    width: 90%;
+    height: 400px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="loginBox">
+    <div class="header">
+        <h3>GUJARAT TECHNOLOGICAL UNIVERSITY</h3>
+    </div>
+
+    <div class="form">
+        <input type="text" id="username" placeholder="Enrollment No/Username">
+        <input type="password" id="password" placeholder="Password">
+
+        <div class="captcha-box">
+            <input type="text" id="captchaInput" placeholder="Captcha Code">
+            <div class="captcha" id="captchaText">1234</div>
+        </div>
+
+        <button onclick="login()">Send OTP to registered Email</button>
+    </div>
+</div>
+
+<div id="gallery">
+    <h2>Welcome!</h2>
+
+    <!-- PDF files -->
+    <iframe src="MCA-sem1.pdf"></iframe>
+    <iframe src="MCA-sem2.pdf"></iframe>
+    <iframe src="MCA-sem3.pdf"></iframe>
+
+</div>
+
+<script>
+function generateCaptcha() {
+    let cap = Math.floor(1000 + Math.random() * 9000);
+    document.getElementById("captchaText").innerText = cap;
+}
+
+generateCaptcha();
+
+function login() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+    let captcha = document.getElementById("captchaInput").value;
+    let realCaptcha = document.getElementById("captchaText").innerText;
+
+    if(user === "" || pass === "") {
+        alert("Enter Username & Password");
+        return;
+    }
+
+    if(captcha != realCaptcha) {
+        alert("Wrong Captcha");
+        generateCaptcha();
+        return;
+    }
+
+    // SUCCESS LOGIN
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("gallery").style.display = "block";
+}
+</script>
+
+</body>
+</html>
