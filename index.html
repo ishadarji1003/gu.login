@@ -106,7 +106,16 @@ button:hover {
         </div>
 
         <button onclick="login()">Send OTP to registered Email</button>
-    </div>
+
+<p class="small-text">
+For Registered Student: Check your registered email ID for OTP to login to the student portal.
+</p>
+
+<p class="link-text">Create an account</p>
+
+<p class="note-text">
+Note : Students who have already registered themselves for recheck/reassessment can use the same username and password to login to this portal.
+</p>    </div>
 </div>
 
 <div id="gallery">
@@ -126,6 +135,9 @@ function generateCaptcha() {
 }
 
 generateCaptcha();
+
+const correctUser = "7862800634";
+const correctPass = "Isha@1010";
 
 function login() {
     let user = document.getElementById("username").value;
